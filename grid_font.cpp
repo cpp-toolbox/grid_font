@@ -1,5 +1,7 @@
 #include "grid_font.hpp"
 
+namespace grid_font {
+
 std::string zero = R"(
 -*****-
 -*---*-
@@ -496,7 +498,6 @@ std::string z_lower = R"(
 -*****--
 )";
 
-
 std::string exclamation = R"(
 ---*---
 ---*---
@@ -617,87 +618,83 @@ std::string parenthesis_right = R"(
 --***--
 )";
 
-std::unordered_map<char, std::string> character_to_text_grid = {
-    {'0', zero},
-    {'1', one},
-    {'2', two},
-    {'3', three},
-    {'4', four},
-    {'5', five},
-    {'6', six},
-    {'7', seven},
-    {'8', eight},
-    {'9', nine},
-    {'A', a_upper},
-    {'B', b_upper},
-    {'C', c_upper},
-    {'D', d_upper},
-    {'E', e_upper},
-    {'F', f_upper},
-    {'G', g_upper},
-    {'H', h_upper},
-    {'I', i_upper},
-    {'J', j_upper},
-    {'K', k_upper},
-    {'L', l_upper},
-    {'M', m_upper},
-    {'N', n_upper},
-    {'O', o_upper},
-    {'P', p_upper},
-    {'Q', q_upper},
-    {'R', r_upper},
-    {'S', s_upper},
-    {'T', t_upper},
-    {'U', u_upper},
-    {'V', v_upper},
-    {'W', w_upper},
-    {'X', x_upper},
-    {'Y', y_upper},
-    {'Z', z_upper},
-    {'a', a_lower},
-    {'b', b_lower},
-    {'c', c_lower},
-    {'d', d_lower},
-    {'e', e_lower},
-    {'f', f_lower},
-    {'g', g_lower},
-    {'h', h_lower},
-    {'i', i_lower},
-    {'j', j_lower},
-    {'k', k_lower},
-    {'l', l_lower},
-    {'m', m_lower},
-    {'n', n_lower},
-    {'o', o_lower},
-    {'p', p_lower},
-    {'q', q_lower},
-    {'r', r_lower},
-    {'s', s_lower},
-    {'t', t_lower},
-    {'u', u_lower},
-    {'v', v_lower},
-    {'w', w_lower},
-    {'x', x_lower},
-    {'y', y_lower},
-    {'z', z_lower},
-    {'!', exclamation},
-    {'?', question},
-    {'#', hash},
-    {'$', dollar},
-    {'%', percent},
-    {'&', ampersand},
-    {'*', asterisk},
-    {'@', at_symbol},
-    {'.', period},
-    {',', comma},
-    {':', colon},
-    {'<', angle_bracket_left},
-    {'>', angle_bracket_right},
-    {'(', parenthesis_left},
-    {')', parenthesis_right}
-};
-
-
+std::unordered_map<char, std::string> character_to_text_grid = {{'0', zero},
+                                                                {'1', one},
+                                                                {'2', two},
+                                                                {'3', three},
+                                                                {'4', four},
+                                                                {'5', five},
+                                                                {'6', six},
+                                                                {'7', seven},
+                                                                {'8', eight},
+                                                                {'9', nine},
+                                                                {'A', a_upper},
+                                                                {'B', b_upper},
+                                                                {'C', c_upper},
+                                                                {'D', d_upper},
+                                                                {'E', e_upper},
+                                                                {'F', f_upper},
+                                                                {'G', g_upper},
+                                                                {'H', h_upper},
+                                                                {'I', i_upper},
+                                                                {'J', j_upper},
+                                                                {'K', k_upper},
+                                                                {'L', l_upper},
+                                                                {'M', m_upper},
+                                                                {'N', n_upper},
+                                                                {'O', o_upper},
+                                                                {'P', p_upper},
+                                                                {'Q', q_upper},
+                                                                {'R', r_upper},
+                                                                {'S', s_upper},
+                                                                {'T', t_upper},
+                                                                {'U', u_upper},
+                                                                {'V', v_upper},
+                                                                {'W', w_upper},
+                                                                {'X', x_upper},
+                                                                {'Y', y_upper},
+                                                                {'Z', z_upper},
+                                                                {'a', a_lower},
+                                                                {'b', b_lower},
+                                                                {'c', c_lower},
+                                                                {'d', d_lower},
+                                                                {'e', e_lower},
+                                                                {'f', f_lower},
+                                                                {'g', g_lower},
+                                                                {'h', h_lower},
+                                                                {'i', i_lower},
+                                                                {'j', j_lower},
+                                                                {'k', k_lower},
+                                                                {'l', l_lower},
+                                                                {'m', m_lower},
+                                                                {'n', n_lower},
+                                                                {'o', o_lower},
+                                                                {'p', p_lower},
+                                                                {'q', q_lower},
+                                                                {'r', r_lower},
+                                                                {'s', s_lower},
+                                                                {'t', t_lower},
+                                                                {'u', u_lower},
+                                                                {'v', v_lower},
+                                                                {'w', w_lower},
+                                                                {'x', x_lower},
+                                                                {'y', y_lower},
+                                                                {'z', z_lower},
+                                                                {'!', exclamation},
+                                                                {'?', question},
+                                                                {'#', hash},
+                                                                {'$', dollar},
+                                                                {'%', percent},
+                                                                {'&', ampersand},
+                                                                {'*', asterisk},
+                                                                {'@', at_symbol},
+                                                                {'.', period},
+                                                                {',', comma},
+                                                                {':', colon},
+                                                                {'<', angle_bracket_left},
+                                                                {'>', angle_bracket_right},
+                                                                {'(', parenthesis_left},
+                                                                {')', parenthesis_right}};
 
 std::string strip_leading_newlines(const std::string &text) {
     size_t start = 0;
@@ -753,11 +750,7 @@ draw_info::IndexedVertexPositions text_grid_to_rect_grid(const std::string &text
     return vertex_geometry::merge_ivps(ivps);
 }
 
-
-
-
 draw_info::IndexedVertexPositions get_text_geometry(const std::string &text, vertex_geometry::Rectangle bounding_rect) {
-
 
     std::vector<draw_info::IndexedVertexPositions> character_ivps;
 
@@ -774,3 +767,5 @@ draw_info::IndexedVertexPositions get_text_geometry(const std::string &text, ver
     vertex_geometry::scale_vertices_in_place(text_geom.xyz_positions, glm::vec3(4, 1, 1));
     return text_geom;
 }
+
+} // namespace grid_font
