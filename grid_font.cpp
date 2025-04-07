@@ -764,7 +764,7 @@ draw_info::IndexedVertexPositions get_text_geometry(const std::string &text, ver
     }
 
     auto text_geom = vertex_geometry::merge_ivps(character_ivps);
-    vertex_geometry::scale_vertices_in_place(text_geom.xyz_positions, glm::vec3(4, 1, 1));
+    // vertex_geometry::scale_vertices_in_place(text_geom.xyz_positions, glm::vec3(4, 1, 1));
     return text_geom;
 }
 
