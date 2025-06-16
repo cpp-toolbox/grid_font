@@ -1188,21 +1188,73 @@ draw_info::IndexedVertexPositions text_grid_to_rect_grid(const std::string &text
 }
 
 draw_info::IndexedVertexPositions get_text_geometry(const std::string &text, vertex_geometry::Rectangle bounding_rect) {
-
-    std::vector<draw_info::IndexedVertexPositions> character_ivps;
-
-    vertex_geometry::Grid grid(1, text.size(), bounding_rect);
-    unsigned int count = 0;
-    for (const char ch : text) {
-        std::string text_grid = character_to_text_grid[ch];
-        auto character_bounding_rect = grid.get_at(count, 0);
-        character_ivps.push_back(text_grid_to_rect_grid(text_grid, character_bounding_rect));
-        count++;
+    if (text.empty()) {
+        return draw_info::IndexedVertexPositions(); // Return empty geometry
     }
 
-    auto text_geom = vertex_geometry::merge_ivps(character_ivps);
-    // vertex_geometry::scale_vertices_in_place(text_geom.xyz_positions, glm::vec3(4, 1, 1));
-    return text_geom;
+    std::vector<draw_info::IndexedVertexPositions> character_ivps;
+    character_ivps.reserve(text.size());
+
+    // Character aspect ratio: width:height = 10:12
+    const float char_aspect_ratio = 10.0f / 12.0f;
+
+    // Calculate optimal character dimensions that fit within bounding rect
+    float available_width = bounding_rect.width;
+    float available_height = bounding_rect.height;
+
+    // Method 1: Fit all characters horizontally first
+    float char_width_horizontal = available_width / text.size();
+    float char_height_horizontal = char_width_horizontal / char_aspect_ratio;
+
+    // Method 2: Fit character height to available height
+    float char_height_vertical = available_height;
+    float char_width_vertical = char_height_vertical * char_aspect_ratio;
+    float total_width_needed = char_width_vertical * text.size();
+
+    // Choose the method that fits within bounds
+    float final_char_width, final_char_height;
+    if (char_height_horizontal <= available_height) {
+        // Horizontal fitting works
+        final_char_width = char_width_horizontal;
+        final_char_height = char_height_horizontal;
+    } else if (total_width_needed <= available_width) {
+        // Vertical fitting works
+        final_char_width = char_width_vertical;
+        final_char_height = char_height_vertical;
+    } else {
+        // Neither fits perfectly, choose the one that maximizes character size
+        if (char_width_horizontal * char_height_horizontal >= char_width_vertical * char_height_vertical) {
+            final_char_width = char_width_horizontal;
+            final_char_height = char_height_horizontal;
+        } else {
+            final_char_width = char_width_vertical;
+            final_char_height = char_height_vertical;
+        }
+    }
+
+    // Calculate starting position to center the text
+    float total_text_width = final_char_width * text.size();
+    float start_center_x = bounding_rect.center.x - (total_text_width / 2.0f) + (final_char_width / 2.0f);
+
+    // Generate character rectangles
+    for (size_t i = 0; i < text.size(); ++i) {
+        char ch = text[i];
+
+        // Create character bounding rectangle
+        vertex_geometry::Rectangle character_bounding_rect;
+        character_bounding_rect.center.x = start_center_x + i * final_char_width;
+        character_bounding_rect.center.y = bounding_rect.center.y;
+        character_bounding_rect.center.z = bounding_rect.center.z; // Maintain z-coordinate
+        character_bounding_rect.width = final_char_width;
+        character_bounding_rect.height = final_char_height;
+
+        // Convert character to geometry
+        std::string text_grid = character_to_text_grid[ch];
+        character_ivps.push_back(text_grid_to_rect_grid(text_grid, character_bounding_rect));
+    }
+
+    // Merge all character geometries
+    return vertex_geometry::merge_ivps(character_ivps);
 }
 
 } // namespace grid_font
