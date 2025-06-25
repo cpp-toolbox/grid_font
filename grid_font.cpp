@@ -1208,60 +1208,6 @@ std::unordered_map<char, std::string> character_to_text_grid = {{'0', zero},
                                                                 {'(', parenthesis_left},
                                                                 {')', parenthesis_right}};
 
-std::string strip_leading_newlines(const std::string &text) {
-    size_t start = 0;
-    while (start < text.size() && text[start] == '\n') {
-        ++start;
-    }
-    return text.substr(start);
-}
-
-draw_info::IndexedVertexPositions text_grid_to_rect_grid(const std::string &text_grid,
-                                                         const vertex_geometry::Rectangle bounding_rect) {
-    unsigned int rows = 0;
-    unsigned int cols = 0;
-
-    // count rows and columns based on text_grid.
-    std::vector<std::string> lines;
-    std::string line;
-    std::string cleaned_text_grid = strip_leading_newlines(text_grid);
-
-    for (char c : cleaned_text_grid) {
-        if (c == '\n') {
-            lines.push_back(line);
-            line.clear();
-        } else {
-            line += c;
-        }
-    }
-    if (!line.empty())
-        lines.push_back(line); // for the last line if there's no final newline.
-
-    rows = lines.size();
-    if (rows > 0) {
-        cols = lines[0].length(); // assuming all rows have equal length.
-    }
-
-    // Initialize grid
-    vertex_geometry::Grid grid(rows, cols, bounding_rect);
-
-    std::vector<draw_info::IndexedVertexPositions> ivps;
-
-    // iterate over the grid and collect indexed vertex positions for '*' characters.
-    for (unsigned int row = 0; row < rows; ++row) {
-        for (unsigned int col = 0; col < cols; ++col) {
-            if (lines[row][col] == '*') {
-                vertex_geometry::Rectangle rect = grid.get_at(col, row);
-                vertex_geometry::IndexedVertices ivs = rect.get_ivs();
-                draw_info::IndexedVertexPositions ivp(ivs.indices, ivs.vertices);
-                ivps.push_back(ivp);
-            }
-        }
-    }
-
-    return vertex_geometry::merge_ivps(ivps);
-}
-
 draw_info::IndexedVertexPositions get_text_geometry(const std::string &text, vertex_geometry::Rectangle bounding_rect) {
     if (text.empty()) {
         return draw_info::IndexedVertexPositions(); // Return empty geometry
@@ -1325,7 +1271,7 @@ draw_info::IndexedVertexPositions get_text_geometry(const std::string &text, ver
 
         // Convert character to geometry
         std::string text_grid = character_to_text_grid[ch];
-        character_ivps.push_back(text_grid_to_rect_grid(text_grid, character_bounding_rect));
+        character_ivps.push_back(vertex_geometry::text_grid_to_rect_grid(text_grid, character_bounding_rect));
     }
 
     // Merge all character geometries
