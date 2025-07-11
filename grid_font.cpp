@@ -6,6 +6,7 @@ namespace grid_font {
 //
 
 std::string zero = R"(
+----------
 -****-----
 **--**----
 **--**----
@@ -21,6 +22,7 @@ std::string zero = R"(
 )";
 
 std::string one = R"(
+----------
 --**------
 ****------
 --**------
@@ -36,6 +38,7 @@ std::string one = R"(
 )";
 
 std::string two = R"(
+----------
 -****-----
 **--**----
 **--**----
@@ -51,6 +54,7 @@ std::string two = R"(
 )";
 
 std::string three = R"(
+----------
 -****-----
 *---**----
 ----**----
@@ -66,6 +70,7 @@ std::string three = R"(
 )";
 
 std::string four = R"(
+----------
 ---***----
 ---***----
 --****----
@@ -81,6 +86,7 @@ std::string four = R"(
 )";
 
 std::string five = R"(
+----------
 -*****----
 -**-------
 -**-------
@@ -96,6 +102,7 @@ std::string five = R"(
 )";
 
 std::string six = R"(
+----------
 --****----
 -**-------
 **--------
@@ -111,6 +118,7 @@ std::string six = R"(
 )";
 
 std::string seven = R"(
+----------
 ******----
 *---**----
 ---***----
@@ -126,6 +134,7 @@ std::string seven = R"(
 )";
 
 std::string eight = R"(
+----------
 -****-----
 **--**----
 **--**----
@@ -141,6 +150,7 @@ std::string eight = R"(
 )";
 
 std::string nine = R"(
+----------
 -****-----
 **--**----
 **--**----
@@ -157,6 +167,7 @@ std::string nine = R"(
 
 std::string a_upper = R"(
 ----------
+----------
 -*****----
 ---***----
 --**-**---
@@ -171,6 +182,7 @@ std::string a_upper = R"(
 )";
 
 std::string b_upper = R"(
+----------
 ----------
 ******----
 -**--**---
@@ -187,6 +199,7 @@ std::string b_upper = R"(
 
 std::string c_upper = R"(
 ----------
+----------
 --****----
 -**--*----
 **---*----
@@ -201,6 +214,7 @@ std::string c_upper = R"(
 )";
 
 std::string d_upper = R"(
+----------
 ----------
 *****-----
 -**-**----
@@ -217,6 +231,7 @@ std::string d_upper = R"(
 
 std::string e_upper = R"(
 ----------
+----------
 *******---
 -**---*---
 -**-*-*---
@@ -231,6 +246,7 @@ std::string e_upper = R"(
 )";
 
 std::string f_upper = R"(
+----------
 ----------
 *******---
 -**---*---
@@ -247,6 +263,7 @@ std::string f_upper = R"(
 
 std::string g_upper = R"(
 ----------
+----------
 -*****----
 **---*----
 **---*----
@@ -261,6 +278,7 @@ std::string g_upper = R"(
 )";
 
 std::string h_upper = R"(
+----------
 ----------
 ***--***--
 -**--**---
@@ -277,6 +295,7 @@ std::string h_upper = R"(
 
 std::string i_upper = R"(
 ----------
+----------
 ******----
 --**------
 --**------
@@ -291,6 +310,7 @@ std::string i_upper = R"(
 )";
 
 std::string j_upper = R"(
+----------
 ----------
 -*******--
 -----**---
@@ -307,6 +327,7 @@ std::string j_upper = R"(
 
 std::string k_upper = R"(
 ----------
+----------
 ****-***--
 -**--**---
 -**-**----
@@ -321,6 +342,7 @@ std::string k_upper = R"(
 )";
 
 std::string l_upper = R"(
+----------
 ----------
 ****------
 -**-------
@@ -337,6 +359,7 @@ std::string l_upper = R"(
 
 std::string m_upper = R"(
 ----------
+----------
 ***---***-
 -***-***--
 -***-***--
@@ -351,6 +374,7 @@ std::string m_upper = R"(
 )";
 
 std::string n_upper = R"(
+----------
 ----------
 ***-****--
 -**--**---
@@ -367,6 +391,7 @@ std::string n_upper = R"(
 
 std::string o_upper = R"(
 ----------
+----------
 -****-----
 **--**----
 **--**----
@@ -381,6 +406,7 @@ std::string o_upper = R"(
 )";
 
 std::string p_upper = R"(
+----------
 ----------
 ******----
 -**--**---
@@ -397,6 +423,7 @@ std::string p_upper = R"(
 
 std::string q_upper = R"(
 ----------
+----------
 -****-----
 **--**----
 **--**----
@@ -411,6 +438,7 @@ std::string q_upper = R"(
 )";
 
 std::string r_upper = R"(
+----------
 ----------
 ******----
 -**--**---
@@ -427,6 +455,7 @@ std::string r_upper = R"(
 
 std::string s_upper = R"(
 ----------
+----------
 -*****----
 **--**----
 **--------
@@ -441,6 +470,7 @@ std::string s_upper = R"(
 )";
 
 std::string t_upper = R"(
+----------
 ----------
 ******----
 *-**-*----
@@ -457,6 +487,7 @@ std::string t_upper = R"(
 
 std::string u_upper = R"(
 ----------
+----------
 ***--***--
 -**--**---
 -**--**---
@@ -471,6 +502,7 @@ std::string u_upper = R"(
 )";
 
 std::string v_upper = R"(
+----------
 ----------
 ****-****-
 -**---**--
@@ -487,6 +519,7 @@ std::string v_upper = R"(
 
 std::string w_upper = R"(
 ----------
+----------
 ****-****-
 -**---**--
 -**-*-**--
@@ -501,6 +534,7 @@ std::string w_upper = R"(
 )";
 
 std::string x_upper = R"(
+----------
 ----------
 ***-****--
 -**--**---
@@ -517,6 +551,7 @@ std::string x_upper = R"(
 
 std::string y_upper = R"(
 ----------
+----------
 ***-****--
 -**--**---
 --*--*----
@@ -531,6 +566,7 @@ std::string y_upper = R"(
 )";
 
 std::string z_upper = R"(
+----------
 ----------
 ******----
 *---**----
@@ -549,6 +585,7 @@ std::string a_lower = R"(
 ----------
 ----------
 ----------
+----------
 -****-----
 ----**----
 -*****----
@@ -561,6 +598,7 @@ std::string a_lower = R"(
 )";
 
 std::string b_lower = R"(
+----------
 ***-------
 -**-------
 -**-------
@@ -580,6 +618,7 @@ std::string c_lower = R"(
 ----------
 ----------
 ----------
+----------
 -*****----
 **---*----
 **---*----
@@ -592,6 +631,7 @@ std::string c_lower = R"(
 )";
 
 std::string d_lower = R"(
+----------
 ---***----
 ----**----
 ----**----
@@ -610,6 +650,7 @@ std::string e_lower = R"(
 ----------
 ----------
 ----------
+----------
 -****-----
 **--**----
 ******----
@@ -622,6 +663,7 @@ std::string e_lower = R"(
 )";
 
 std::string f_lower = R"(
+----------
 ---*****--
 --**------
 --**------
@@ -640,6 +682,7 @@ std::string g_lower = R"(
 ----------
 ----------
 ----------
+----------
 -**-***---
 **-***----
 **--**----
@@ -652,6 +695,7 @@ std::string g_lower = R"(
 )";
 
 std::string h_lower = R"(
+----------
 ***-------
 -**-------
 -**-------
@@ -667,6 +711,7 @@ std::string h_lower = R"(
 )";
 
 std::string i_lower = R"(
+----------
 --**------
 --**------
 ----------
@@ -682,6 +727,7 @@ std::string i_lower = R"(
 )";
 
 std::string j_lower = R"(
+----------
 ---**-----
 ---**-----
 ----------
@@ -697,6 +743,7 @@ std::string j_lower = R"(
 )";
 
 std::string k_lower = R"(
+----------
 ***-------
 -**-------
 -**-------
@@ -712,6 +759,7 @@ std::string k_lower = R"(
 )";
 
 std::string l_lower = R"(
+----------
 -****-----
 ---**-----
 ---**-----
@@ -730,6 +778,7 @@ std::string m_lower = R"(
 ----------
 ----------
 ----------
+----------
 ********--
 -**-**-**-
 -**-**-**-
@@ -742,6 +791,7 @@ std::string m_lower = R"(
 )";
 
 std::string n_lower = R"(
+----------
 ----------
 ----------
 ----------
@@ -760,6 +810,7 @@ std::string o_lower = R"(
 ----------
 ----------
 ----------
+----------
 -****-----
 **--**----
 **--**----
@@ -772,6 +823,7 @@ std::string o_lower = R"(
 )";
 
 std::string p_lower = R"(
+----------
 ----------
 ----------
 ----------
@@ -790,6 +842,7 @@ std::string q_lower = R"(
 ----------
 ----------
 ----------
+----------
 -**-***---
 **-***----
 **--**----
@@ -802,6 +855,7 @@ std::string q_lower = R"(
 )";
 
 std::string r_lower = R"(
+----------
 ----------
 ----------
 ----------
@@ -820,6 +874,7 @@ std::string s_lower = R"(
 ----------
 ----------
 ----------
+----------
 -*****----
 **--**----
 ****------
@@ -832,6 +887,7 @@ std::string s_lower = R"(
 )";
 
 std::string t_lower = R"(
+----------
 ----------
 -**-------
 -**-------
@@ -850,6 +906,7 @@ std::string u_lower = R"(
 ----------
 ----------
 ----------
+----------
 ***-***---
 -**--**---
 -**--**---
@@ -862,6 +919,7 @@ std::string u_lower = R"(
 )";
 
 std::string v_lower = R"(
+----------
 ----------
 ----------
 ----------
@@ -880,6 +938,7 @@ std::string w_lower = R"(
 ----------
 ----------
 ----------
+----------
 ***---***-
 -**-*-**--
 -*******--
@@ -892,6 +951,7 @@ std::string w_lower = R"(
 )";
 
 std::string x_lower = R"(
+----------
 ----------
 ----------
 ----------
@@ -910,6 +970,7 @@ std::string y_lower = R"(
 ----------
 ----------
 ----------
+----------
 ****-***--
 -**--**---
 -**--*----
@@ -925,6 +986,7 @@ std::string z_lower = R"(
 ----------
 ----------
 ----------
+----------
 ******----
 *--**-----
 --**------
@@ -937,6 +999,7 @@ std::string z_lower = R"(
 )";
 
 std::string exclamation = R"(
+----------
 ---*---
 ---*---
 ---*---
@@ -945,6 +1008,7 @@ std::string exclamation = R"(
 )";
 
 std::string question = R"(
+----------
 -*****-
 ----*--
 ---*---
@@ -953,6 +1017,7 @@ std::string question = R"(
 )";
 
 std::string hash = R"(
+----------
 --*-*--
 -*****-
 --*-*--
@@ -961,6 +1026,7 @@ std::string hash = R"(
 )";
 
 std::string dollar = R"(
+----------
 ---*---
 -*****-
 -*-*---
@@ -969,6 +1035,7 @@ std::string dollar = R"(
 )";
 
 std::string percent = R"(
+----------
 -**--*-
 -**-*--
 ---*---
@@ -977,6 +1044,7 @@ std::string percent = R"(
 )";
 
 std::string plus = R"(
+----------
 ----------
 ----------
 ---*------
@@ -997,6 +1065,7 @@ std::string minus = R"(
 ----------
 ----------
 ----------
+----------
 *******---
 ----------
 ----------
@@ -1007,6 +1076,7 @@ std::string minus = R"(
 )";
 
 std::string ampersand = R"(
+----------
 ----------
 --****----
 -**-------
@@ -1022,6 +1092,7 @@ std::string ampersand = R"(
 )";
 
 std::string asterisk = R"(
+----------
 --**------
 --**------
 ******----
@@ -1037,6 +1108,7 @@ std::string asterisk = R"(
 )";
 
 std::string at_symbol = R"(
+----------
 --***-----
 -*---*----
 *----*----
@@ -1059,6 +1131,7 @@ std::string period = R"(
 ----------
 ----------
 ----------
+----------
 **--------
 **--------
 ----------
@@ -1067,6 +1140,7 @@ std::string period = R"(
 )";
 
 std::string comma = R"(
+----------
 -------
 -------
 -------
@@ -1075,6 +1149,7 @@ std::string comma = R"(
 )";
 
 std::string colon = R"(
+----------
 -------
 ---*---
 -------
@@ -1083,6 +1158,7 @@ std::string colon = R"(
 )";
 
 std::string angle_bracket_left = R"(
+----------
 ----*--
 ---*---
 --*----
@@ -1091,6 +1167,7 @@ std::string angle_bracket_left = R"(
 )";
 
 std::string angle_bracket_right = R"(
+----------
 --*----
 ---*---
 ----*--
@@ -1098,7 +1175,24 @@ std::string angle_bracket_right = R"(
 --*----
 )";
 
+std::string forward_slash = R"(
+----**----
+----**----
+---**-----
+---**-----
+---**-----
+--**------
+--**------
+-**-------
+-**-------
+-**-------
+**--------
+**--------
+----------
+)";
+
 std::string parenthesis_left = R"(
+----------
 --*-------
 -**-------
 -*--------
@@ -1114,6 +1208,7 @@ std::string parenthesis_left = R"(
 )";
 
 std::string parenthesis_right = R"(
+----------
 *---------
 **--------
 -*--------
@@ -1192,6 +1287,7 @@ std::unordered_map<char, std::string> character_to_text_grid = {{'0', zero},
                                                                 {'z', z_lower},
                                                                 {'!', exclamation},
                                                                 {'?', question},
+                                                                {'/', forward_slash},
                                                                 {'#', hash},
                                                                 {'$', dollar},
                                                                 {'%', percent},
@@ -1216,8 +1312,8 @@ draw_info::IndexedVertexPositions get_text_geometry(const std::string &text, ver
     std::vector<draw_info::IndexedVertexPositions> character_ivps;
     character_ivps.reserve(text.size());
 
-    // Character aspect ratio: width:height = 10:12
-    const float char_aspect_ratio = 10.0f / 12.0f;
+    // Character aspect ratio: width:height = 10:13
+    const float char_aspect_ratio = 10.0f / 13.0f;
 
     // Calculate optimal character dimensions that fit within bounding rect
     float available_width = bounding_rect.width;
