@@ -1,4 +1,5 @@
 #include "grid_font.hpp"
+#include <algorithm>
 
 namespace grid_font {
 
@@ -1190,6 +1191,21 @@ std::string forward_slash = R"(
 **--------
 ----------
 )";
+std::string back_slash = R"(
+**--------
+**--------
+-**-------
+-**-------
+-**-------
+--**------
+--**------
+---**-----
+---**-----
+---**-----
+----**----
+----**----
+----------
+)";
 
 std::string parenthesis_left = R"(
 ----------
@@ -1288,6 +1304,7 @@ std::unordered_map<char, std::string> character_to_text_grid = {{'0', zero},
                                                                 {'!', exclamation},
                                                                 {'?', question},
                                                                 {'/', forward_slash},
+                                                                {'\\', back_slash},
                                                                 {'#', hash},
                                                                 {'$', dollar},
                                                                 {'%', percent},
@@ -1305,12 +1322,59 @@ std::unordered_map<char, std::string> character_to_text_grid = {{'0', zero},
                                                                 {')', parenthesis_right}};
 
 draw_info::IndexedVertexPositions get_text_geometry(const std::string &text, vertex_geometry::Rectangle bounding_rect) {
-    if (text.empty()) {
+    TextJustification justification = TextJustification::Left;
+
+    // NOTE: eventually this should occur outside of this context
+    auto t = text_utils::replace_literal_newlines_with_real(text);
+
+    if (t.empty()) {
         return draw_info::IndexedVertexPositions(); // Return empty geometry
     }
 
+    // Check for multi-line input
+    bool contains_newline = t.find('\n') != std::string::npos;
+    if (contains_newline) {
+        size_t line_count = std::count(t.begin(), t.end(), '\n') + 1;
+        vertex_geometry::Grid text_lines_grid(line_count, 1, bounding_rect);
+
+        // Extract lines and determine max length
+        std::vector<std::string> lines;
+        std::istringstream stream(t);
+        std::string line;
+        size_t max_line_length = 0;
+        while (std::getline(stream, line)) {
+            max_line_length = std::max(max_line_length, line.length());
+            lines.push_back(std::move(line));
+        }
+
+        // Pad lines based on justification
+        for (auto &line : lines) {
+            size_t pad = max_line_length - line.length();
+            if (justification == TextJustification::Left) {
+                line.append(pad, ' ');
+            } else if (justification == TextJustification::Right) {
+                line.insert(0, pad, ' ');
+            } else if (justification == TextJustification::Center) {
+                size_t left_pad = pad / 2;
+                size_t right_pad = pad - left_pad;
+                line.insert(0, left_pad, ' ');
+                line.append(right_pad, ' ');
+            }
+        }
+
+        // Process each padded line
+        std::vector<draw_info::IndexedVertexPositions> line_ivps;
+        for (size_t i = 0; i < lines.size(); ++i) {
+            vertex_geometry::Rectangle line_rect = text_lines_grid.get_at(0, i);
+            line_ivps.push_back(get_text_geometry(lines[i], line_rect));
+        }
+
+        return vertex_geometry::merge_ivps(line_ivps);
+    }
+
+    // SINGLE LINE HANDLING:
     std::vector<draw_info::IndexedVertexPositions> character_ivps;
-    character_ivps.reserve(text.size());
+    character_ivps.reserve(t.size());
 
     // Character aspect ratio: width:height = 10:13
     const float char_aspect_ratio = 10.0f / 13.0f;
@@ -1320,26 +1384,23 @@ draw_info::IndexedVertexPositions get_text_geometry(const std::string &text, ver
     float available_height = bounding_rect.height;
 
     // Method 1: Fit all characters horizontally first
-    float char_width_horizontal = available_width / text.size();
+    float char_width_horizontal = available_width / t.size();
     float char_height_horizontal = char_width_horizontal / char_aspect_ratio;
 
     // Method 2: Fit character height to available height
     float char_height_vertical = available_height;
     float char_width_vertical = char_height_vertical * char_aspect_ratio;
-    float total_width_needed = char_width_vertical * text.size();
+    float total_width_needed = char_width_vertical * t.size();
 
     // Choose the method that fits within bounds
     float final_char_width, final_char_height;
     if (char_height_horizontal <= available_height) {
-        // Horizontal fitting works
         final_char_width = char_width_horizontal;
         final_char_height = char_height_horizontal;
     } else if (total_width_needed <= available_width) {
-        // Vertical fitting works
         final_char_width = char_width_vertical;
         final_char_height = char_height_vertical;
     } else {
-        // Neither fits perfectly, choose the one that maximizes character size
         if (char_width_horizontal * char_height_horizontal >= char_width_vertical * char_height_vertical) {
             final_char_width = char_width_horizontal;
             final_char_height = char_height_horizontal;
@@ -1349,28 +1410,24 @@ draw_info::IndexedVertexPositions get_text_geometry(const std::string &text, ver
         }
     }
 
-    // Calculate starting position to center the text
-    float total_text_width = final_char_width * text.size();
+    // Center the entire line
+    float total_text_width = final_char_width * t.size();
     float start_center_x = bounding_rect.center.x - (total_text_width / 2.0f) + (final_char_width / 2.0f);
 
-    // Generate character rectangles
-    for (size_t i = 0; i < text.size(); ++i) {
-        char ch = text[i];
+    for (size_t i = 0; i < t.size(); ++i) {
+        char ch = t[i];
 
-        // Create character bounding rectangle
         vertex_geometry::Rectangle character_bounding_rect;
         character_bounding_rect.center.x = start_center_x + i * final_char_width;
         character_bounding_rect.center.y = bounding_rect.center.y;
-        character_bounding_rect.center.z = bounding_rect.center.z; // Maintain z-coordinate
+        character_bounding_rect.center.z = bounding_rect.center.z;
         character_bounding_rect.width = final_char_width;
         character_bounding_rect.height = final_char_height;
 
-        // Convert character to geometry
         std::string text_grid = character_to_text_grid[ch];
         character_ivps.push_back(vertex_geometry::text_grid_to_rect_grid(text_grid, character_bounding_rect));
     }
 
-    // Merge all character geometries
     return vertex_geometry::merge_ivps(character_ivps);
 }
 
