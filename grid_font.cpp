@@ -999,6 +999,22 @@ std::string z_lower = R"(
 ----------
 )";
 
+std::string mu = R"(
+----------
+----------
+----------
+----------
+***-***---
+-**--**---
+-**--**---
+-**--**---
+-**--**---
+-*******--
+-**-------
+-**-------
+-**-------
+)";
+
 std::string exclamation = R"(
 ----------
 ---*---
@@ -1301,6 +1317,7 @@ std::unordered_map<char, std::string> character_to_text_grid = {{'0', zero},
                                                                 {'x', x_lower},
                                                                 {'y', y_lower},
                                                                 {'z', z_lower},
+                                                                {L'µ', mu},
                                                                 {'!', exclamation},
                                                                 {'?', question},
                                                                 {'/', forward_slash},
@@ -1425,6 +1442,9 @@ draw_info::IndexedVertexPositions get_text_geometry(const std::string &text, ver
         character_bounding_rect.height = final_char_height;
 
         std::string text_grid = character_to_text_grid[ch];
+        if (text_grid.empty()) {
+            // std::cout << "text grid for " << ch << " is empty" << std::endl;
+        }
         character_ivps.push_back(vertex_geometry::text_grid_to_rect_grid(text_grid, character_bounding_rect));
     }
 
