@@ -1,5 +1,6 @@
 #include "grid_font.hpp"
 #include <algorithm>
+#include <unordered_map>
 
 namespace grid_font {
 
