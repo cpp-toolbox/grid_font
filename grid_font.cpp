@@ -1446,7 +1446,7 @@ draw_info::IndexedVertexPositions get_text_geometry(const std::string &text, ver
         if (text_grid.empty()) {
             // std::cout << "text grid for " << ch << " is empty" << std::endl;
         }
-        character_ivps.push_back(vertex_geometry::text_grid_to_rect_grid(text_grid, character_bounding_rect));
+        character_ivps.push_back(vertex_geometry::binary_text_grid_to_rect_grid(text_grid, character_bounding_rect));
     }
 
     return vertex_geometry::merge_ivps(character_ivps);
