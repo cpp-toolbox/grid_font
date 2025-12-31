@@ -1495,8 +1495,8 @@ draw_info::IndexedVertexPositions get_text_geometry(const std::string &text, ver
     const float char_aspect_ratio = 10.0f / 13.0f;
 
     // Calculate optimal character dimensions that fit within bounding rect
-    float available_width = bounding_rect.width;
-    float available_height = bounding_rect.height;
+    float available_width = bounding_rect.get_u_extent_size();
+    float available_height = bounding_rect.get_v_extent_size();
 
     // Method 1: Fit all characters horizontally first
     float char_width_horizontal = available_width / t.size();
@@ -1536,8 +1536,8 @@ draw_info::IndexedVertexPositions get_text_geometry(const std::string &text, ver
         character_bounding_rect.center.x = start_center_x + i * final_char_width;
         character_bounding_rect.center.y = bounding_rect.center.y;
         character_bounding_rect.center.z = bounding_rect.center.z;
-        character_bounding_rect.width = final_char_width;
-        character_bounding_rect.height = final_char_height;
+        character_bounding_rect.set_u_extent(final_char_width);
+        character_bounding_rect.set_v_extent(final_char_height);
 
         std::string text_grid = character_to_text_grid[ch];
         if (text_grid.empty()) {
